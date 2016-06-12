@@ -4,22 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>estest</groupId>
-    <artifactId>mytest</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>davinci</groupId>
+    <artifactId>asql2es</artifactId>
+    <version>1.0.1</version>
     <properties>
         <encoding>UTF-8</encoding>
         <java.version>1.8</java.version>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-        <scala.version>2.10.6</scala.version>
-        <scala.compatversion>2.10</scala.compatversion>
-        <scalatest.version>2.2.5</scalatest.version>
-        <akka.version>2.3.6</akka.version>
-        <kafka.version>0.8.1.1</kafka.version>
-        <hadoop.version>2.7.1</hadoop.version>
-        <hbase.version>1.1.2</hbase.version>
-        <spark.version>1.6.0</spark.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportPath>target/jacoco.exec</sonar.jacoco.reportPath>
@@ -47,6 +39,7 @@
 
     <dependencies>
         <!-- scala -->
+<!--
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
@@ -70,6 +63,7 @@
             <artifactId>scalatest_2.10</artifactId>
             <version>${scalatest.version}</version>
         </dependency>
+-->
 
 
 
@@ -241,29 +235,6 @@
     <build>
         <plugins>
 
-            <!-- compiler scala -->
-            <plugin>
-                <groupId>net.alchim31.maven</groupId>
-                <artifactId>scala-maven-plugin</artifactId>
-                <version>3.1.6</version>
-                <configuration>
-                    <scalaVersion>${scala.version}</scalaVersion>
-                    <jvmArgs>
-                        <jvmArg>-Xss2m</jvmArg>
-                        <jvmArg>-Xms2000m</jvmArg>
-                        <jvmArg>-Xmx3000m</jvmArg>
-                    </jvmArgs>
-                    <!--<recompileMode>incremental</recompileMode> -->
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.6</version>
