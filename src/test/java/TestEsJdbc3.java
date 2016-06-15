@@ -1,15 +1,18 @@
+import org.apache.log4j.BasicConfigurator;
+
 import java.sql.*;
 
 /**
  * Created by 201601050162 on 2016/5/16.
  */
 
-/**
- * Created by 201601050162 on 2016/5/16.
- */
+
 public class TestEsJdbc3 {
 
 	public static void main(String args[]) {
+
+		BasicConfigurator.configure();
+
 		System.out.println("Hello World!");
 		Connection connection = null;
 		try {

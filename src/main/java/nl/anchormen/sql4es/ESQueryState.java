@@ -28,6 +28,8 @@ import nl.anchormen.sql4es.model.expression.IComparison;
 import nl.anchormen.sql4es.parse.se.SearchAggregationParser;
 import nl.anchormen.sql4es.parse.se.SearchHitParser;
 import nl.anchormen.sql4es.parse.sql.QueryParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class maintains the state of a {@link ESStatement} and is used interpret SELECT statements,
@@ -45,7 +47,8 @@ public class ESQueryState{
 	private final Statement statement;
 	private final SearchHitParser hitParser = new SearchHitParser();
 	private final SearchAggregationParser aggParser = new SearchAggregationParser();
-	
+	private final Logger logger = LoggerFactory.getLogger(ESQueryState.class);
+
 	// state definition
 	private int maxRows = -1;
 	private SearchRequestBuilder request;
@@ -82,6 +85,7 @@ public class ESQueryState{
 		if(this.esResponse != null && this.esResponse.getScrollId() != null){
 			client.prepareClearScroll().addScrollId(this.esResponse.getScrollId()).execute();
 		}
+		logger.info("es index: " + indices + " ; " + "sql: " + sql);
 		this.request = client.prepareSearch(indices);
 		Map<String, Map<String, Integer>> esInfo = (Map<String, Map<String, Integer>>)Utils.getObjectProperty(props, Utils.PROP_TABLE_COLUMN_MAP);
 		Object[] info = parser.parse(sql, query, maxRows, request, this.statement.getConnection().getClientInfo(), esInfo);
